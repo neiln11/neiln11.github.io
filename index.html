@@ -1,0 +1,974 @@
+<!doctype html>
+<html lang="en" data-type="service" data-radius="sharp" data-buttons="arrow" data-mood="rain" data-motion>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Neil Nambissan: backend and applied AI engineer</title>
+<meta name="description" content="Neil Ravi Nambissan, a computer science graduate from UC Merced in May 2026, with AI and full-stack internships at Ciena and Morningstar. Based in San Jose.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Neil Nambissan: backend and applied AI engineer">
+<meta property="og:description" content="AI and full-stack internships at Ciena and Morningstar. B.S. Computer Science, UC Merced, May 2026.">
+<meta property="og:image" content="share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#100e1f">
+<meta name="site-kind" content="other">
+<meta name="page-type" content="service">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400..700&family=Red+Hat+Text:wght@400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/ui/cards.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<link rel="stylesheet" href="assets/icons/icon.css">
+<link rel="stylesheet" href="assets/diagrams/diagram.css">
+<style>
+:root {
+  --p-bg: #100e1f; --p-surface: #1c1932; --p-ink: #f7f2f2; --p-muted: #b3a8c9;
+  --p-accent: #b9c7ff; --p-accent-ink: #100e1f; --p-action: #f2b46a; --p-action-ink: #1a1020;
+  --p-inv-bg: #0b0917; --p-inv-surface: #16132a; --p-inv-ink: #f7f2f2; --p-inv-muted: #b3a8c9;
+  --p-inv-accent: #b9c7ff; --p-inv-accent-ink: #100e1f; --p-inv-action: #f2b46a; --p-inv-action-ink: #1a1020;
+  --font-display: "Red Hat Display", system-ui, sans-serif;
+  --font-text: "Red Hat Text", system-ui, sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.025em;
+  --display-tracking-xl: -0.035em;
+}
+/* the product split: the feature on the left, the two smaller products stacked on the right */
+@media (min-width: 1024px) {
+  .work-feature { grid-column: span 6; }
+  .work-side { grid-column: 7 / span 6; }
+}
+/* the headshot fills a wide band on a tablet and a shallow frame on a desktop (the words run longer) */
+/* the product kicker inside a work title: a small label on the title's own line */
+.kick { font: 500 11px/1 var(--font-text); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-right: 8px; vertical-align: 2px; }
+/* the work head runs the container's full width so its h2 holds one line; the ask sits at the right edge */
+#work .section-head--split > div { max-width: none; }
+#work .work-ask { flex: none; white-space: nowrap; }
+/* work: the agent card on the left, two project cards stacked on the right */
+.work-grid { align-items: start; }
+.work-list { display: flex; flex-direction: column; gap: var(--s-5); }
+.work-list > .card--open { border-top: 1px solid var(--line); padding-top: var(--s-5); }
+.work-list > .card--open:first-child { border-top: 0; padding-top: 0; }
+#work .panel { --p-h: 280px; background: var(--surface); }
+#work .work-side .panel { --p-h: 115px; }
+@media (max-width: 1279px) {
+  .stack-list__meta { display: none; }
+  #work .panel { --p-h: 270px; }
+}
+/* a tablet keeps the project cards as words only; their diagrams return on a phone and a desktop */
+@media (min-width: 640px) and (max-width: 1279px) { #work .work-side .panel { display: none; } }
+/* the stack section sits on engineering paper: a hairline grid that fades at its top and foot */
+#skills {
+  background-image:
+    linear-gradient(to bottom, var(--bg) 0, transparent 14%, transparent 86%, var(--bg) 100%),
+    linear-gradient(to right, color-mix(in oklab, var(--ink) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--ink) 4%, transparent) 1px, transparent 1px);
+  background-size: 100% 100%, 72px 72px, 72px 72px;
+  background-position: 0 0, center top, center top;
+}
+/* the skills index: three labelled columns of icon and name, a rule between rows, no cards */
+.stack-grid { margin-top: var(--s-6); }
+.stack-grid > .stack-col { grid-column: span 4; }
+.stack-col { min-width: 0; }
+.stack-col > .t-label { color: var(--muted); margin-bottom: var(--s-3); }
+.stack-list { display: flex; flex-direction: column; }
+.stack-list li { display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; align-items: center; gap: var(--s-3); padding: 9px 0; border-top: 1px solid var(--line); }
+.stack-list li:last-child { border-bottom: 1px solid var(--line); }
+.stack-list .ic-tile { --tile: 32px; }
+.stack-list__name { font-weight: 500; }
+.stack-list__meta { color: var(--muted); font-size: var(--t-small); text-align: right; }
+/* the project diagrams are stills, so their lit nodes never fade in as they come on screen */
+#work .dg-node, #work .dg-line, #work .dg-cap { transition: none; }
+@media (max-width: 639px) {
+  #work .panel { --p-h: 205px; }
+  #work .work-side .panel { --p-h: 140px; }
+  /* a phone keeps the featured pipeline and the first platform as pictures; the third card is its words */
+  #work .work-side > article:last-child .panel { display: none; }
+  /* when the head wraps, the ask becomes a full-width row with its words on the right line */
+  #work .work-ask { width: 100%; margin-left: 0; justify-content: flex-end; text-decoration: none; }
+  #work .work-ask span { text-decoration: underline; text-underline-offset: 4px; }
+  /* one screen each on a phone: the copy is held to what fits under --padt */
+  .stack-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s-4); row-gap: 0; margin-top: var(--s-4); }
+  .stack-grid > .stack-col { grid-column: auto; }
+  .stack-col, .stack-list { display: contents; }
+  .stack-col > .t-label { display: none; }
+  .stack-list li { padding: 12px 0; grid-template-columns: 28px minmax(0, 1fr); gap: var(--s-2); }
+  .stack-list .ic-tile { --tile: 28px; }
+  .stack-list__meta { display: none; }
+}
+/* a tablet keeps the stack as names only: the meta lines return on a desktop */
+@media (min-width: 640px) and (max-width: 1279px) { .stack-list__meta { display: none; } }
+
+/* ---------------------------------------------------------------- midnight / lofi direction
+   Obsidian ground, smoked glass surfaces, one cyan signal and a little amber. The grid is hairline,
+   not decorative; the glow is fixed to the page, never to the scroll. */
+:root {
+  --amber: #f2b46a;
+  --line: color-mix(in oklab, var(--ink) 14%, transparent);
+  --line-strong: color-mix(in oklab, var(--ink) 26%, transparent);
+  --glow-a: rgba(185, 199, 255, .14);
+  --glow-b: rgba(242, 180, 106, .07);
+  --glow-c: rgba(232, 143, 160, .045);
+}
+html[data-mood="twilight"] { --glow-a: rgba(185, 199, 255, .20); --glow-b: rgba(232, 143, 160, .10); --glow-c: rgba(242, 180, 106, .07); }
+html[data-mood="slate"]    { --glow-a: rgba(179, 168, 201, .10); --glow-b: rgba(242, 180, 106, .035); --glow-c: rgba(185, 199, 255, .035); }
+body {
+  background-image:
+    radial-gradient(ellipse 65% 55% at 84% 8%, var(--glow-a), transparent 72%),
+    radial-gradient(ellipse 46% 40% at 6% 82%, var(--glow-b), transparent 74%),
+    radial-gradient(ellipse 50% 45% at 52% 48%, var(--glow-c), transparent 76%);
+  background-attachment: fixed;
+  transition: background-image 500ms var(--ease);
+}
+/* a fixed, very faint scanline and grain layer: texture, not content, and never a scroll effect */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: .16;
+  background-image:
+    repeating-linear-gradient(to bottom, rgba(247, 242, 242, .045) 0 1px, transparent 1px 4px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+  background-size: auto, 160px 160px;
+}
+/* one hairline and one quiet shadow on every surface, still only one card family */
+.card { border: 1px solid var(--line); box-shadow: 0 20px 55px rgba(0, 0, 0, .25); }
+.card:hover { border-color: var(--line-strong); }
+.panel { background: color-mix(in oklab, var(--p-surface) 88%, #0d091a); }
+#work .panel { border: 1px solid var(--line); }
+/* the hero's words sit on the graded sky itself: no panel, no border, the scrim carries contrast */
+.hero--photo .hero__text h1 { text-wrap: balance; }
+/* the active node uses the page's primary look, so the diagram stays one button family */
+#work .dg-node.is-ink { background: var(--lofi-lamp); border-color: transparent; border-radius: 8px; }
+#work .dg-node.is-ink::before, #work .dg-node.is-ink::after { content: none !important; }
+#work .dg-node.is-ink .dg-ic, #work .dg-node.is-ink .dg-label { color: #1a1020; }
+/* a small status badge, set above the headline rather than in the flow of the lead */
+.status-badge {
+  display: inline;
+  padding: 0; border: 0; border-radius: 0; box-shadow: none;
+  color: color-mix(in oklab, var(--p-ink) 74%, transparent);
+  font: 500 11px/1.2 var(--font-text); letter-spacing: .15em; text-transform: uppercase;
+}
+.hero--photo .hero__text > .status-badge + h1 { margin-top: var(--s-4); }
+
+/* ---------------------------------------------------------------- lofi & mood control */
+.mood-control { position: relative; }
+.mood-trigger, .quick-trigger {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  height: 44px; min-width: 44px; padding: 0 10px; cursor: pointer;
+  border: 1px solid var(--line-strong); border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--ink); font: 500 13px/1 var(--font-text);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+.mood-trigger svg, .quick-trigger svg { width: 16px; height: 16px; flex: none; color: var(--accent); }
+.mood-trigger:hover, .quick-trigger:hover, .mood-trigger[aria-expanded="true"], .quick-trigger[aria-expanded="true"] {
+  border-color: var(--accent); transform: translateY(-1px);
+  background: color-mix(in oklab, var(--accent) 10%, var(--p-surface));
+}
+.mood-trigger:active, .quick-trigger:active { transform: translateY(0); }
+.mood-panel {
+  position: absolute; top: calc(100% + 8px); right: 0; z-index: 70; width: 296px;
+  padding: var(--s-5); background: var(--p-surface); color: var(--ink);
+  border: 1px solid var(--line-strong); border-radius: var(--r-md);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .55);
+}
+.mood-panel[hidden] { display: none; }
+.mood-panel > .t-label { color: var(--muted); }
+.mood-panel__presets { display: grid; gap: 6px; margin-top: var(--s-3); }
+.mood-panel button, .quick__list button, .quick__list a {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+  width: 100%; min-height: 44px; padding: 0 var(--s-3); cursor: pointer;
+  border: 1px solid var(--line); border-radius: var(--r-sm); background: transparent;
+  color: var(--ink); font: 500 14px/1.3 var(--font-text); text-align: left;
+  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.mood-panel button:hover, .quick__list button:hover, .quick__list a:hover {
+  border-color: var(--accent); background: color-mix(in oklab, var(--accent) 9%, transparent); color: var(--accent);
+}
+.mood-panel button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); background: color-mix(in oklab, var(--accent) 12%, transparent); }
+.mood-panel__audio { display: grid; gap: 8px; margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid var(--line); }
+.mood-panel__audio label { color: var(--muted); font: 500 12px/1 var(--font-text); letter-spacing: .04em; text-transform: uppercase; }
+.mood-panel__audio input[type="range"] { width: 100%; height: 44px; accent-color: var(--accent); cursor: pointer; }
+.mood-panel__note { color: var(--muted); font-size: 12px; line-height: 1.4; }
+
+/* ---------------------------------------------------------------- quick jump (Cmd/Ctrl+K or /) */
+.quick {
+  width: min(560px, calc(100% - 32px)); max-height: min(72vh, 620px); padding: 0;
+  border: 1px solid var(--line-strong); border-radius: var(--r-md);
+  background: var(--p-surface); color: var(--ink); box-shadow: 0 30px 90px rgba(0, 0, 0, .65);
+}
+.quick::backdrop { background: rgba(12, 8, 22, .76); backdrop-filter: blur(4px); }
+.quick__box { padding: var(--s-5); }
+.quick__head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); padding-bottom: var(--s-3); border-bottom: 1px solid var(--line); }
+.quick__head .t-label { color: var(--muted); }
+.quick__close { width: 44px; height: 44px; flex: none; display: grid; place-items: center; cursor: pointer;
+  border: 1px solid var(--line); border-radius: var(--r-sm); background: transparent; color: var(--ink); font-size: 20px; }
+.quick__close:hover { border-color: var(--accent); color: var(--accent); }
+.quick__list { display: grid; gap: 4px; margin-top: var(--s-3); max-height: 52vh; overflow: auto; }
+.quick__list .quick__hint { color: var(--muted); margin-left: auto; font: 12px/1 var(--font-mono); letter-spacing: 0; white-space: nowrap; }
+.quick__foot { margin-top: var(--s-4); padding-top: var(--s-3); border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+
+/* ---------------------------------------------------------------- diagram notes (still + click) */
+#work .dg-node { cursor: pointer; }
+#work .dg.is-picked .dg-node { opacity: .48; }
+#work .dg.is-picked .dg-node.is-hit, #work .dg.is-picked .dg-node.is-picked-node { opacity: 1; }
+#work .dg-node.is-picked-node { outline: 1px solid var(--accent); outline-offset: 3px; }
+.dg-note {
+  position: absolute; z-index: 6; left: 10px; right: 10px; bottom: 8px;
+  margin: 0; padding: 6px 10px; border: 1px solid var(--line-strong); border-radius: 6px;
+  background: color-mix(in oklab, var(--p-bg) 94%, transparent); color: var(--ink);
+  font: 500 12px/1.35 var(--font-text); backdrop-filter: blur(6px);
+}
+
+@media (max-width: 639px) {
+  /* the badge adds a line, so the hero's three gaps tighten to keep one screen */
+  .hero--photo .hero__text > .status-badge + h1 { margin-top: 0; }
+  .hero--photo .hero__text > h1 + .hero__lead { margin-top: 6px; }
+  .hero--photo .hero__text > .btn-row { margin-top: 6px; }
+  .hero__text .btn-row { gap: 9px; }
+  .status-badge { padding-block: 4px; }
+  /* the two small controls replace the nav's button on a phone; the hero and close keep the action */
+  .nav:not(.is-open) .nav__actions > .mood-control,
+  .nav:not(.is-open) .nav__actions > .quick-trigger { display: flex; }
+  .nav:not(.is-open) .nav__actions > .btn--primary { display: none; }
+  .mood-trigger__label, .quick-trigger__label { display: none; }
+  .mood-panel { position: fixed; top: calc(var(--nav) + 8px); left: var(--gut); right: var(--gut); width: auto; }
+  .mood-nav-gap { height: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body, body::after, .mood-trigger, .quick-trigger, .mood-panel button { transition: none; }
+  body::after { opacity: .10; }
+}
+
+/* ---------------------------------------------------------------- refinement: lofi twilight
+   The supplied street scene sets the palette, not the layout: dusk indigo and plum-slate,
+   periwinkle light, lantern gold and a thread of dusk rose. No inserted image cards in the hero
+   or About; the atmosphere is graded ground, scrims, hairlines and type. */
+:root {
+  --lofi-night: #0d0a1c; --lofi-indigo: #1b1638; --lofi-violet: #3b2a5c; --lofi-slate: #26304f;
+  --lofi-sky: #b9c7ff; --lofi-sky-soft: rgba(185,199,255,.16);
+  --lofi-lamp: #f2b46a; --lofi-lamp-soft: rgba(242,180,106,.16);
+  --lofi-rose: #e88fa0;
+  --scene-line: color-mix(in oklab, var(--lofi-sky) 28%, var(--line));
+}
+
+/* ---------------------------------------------------------------- hero: one twilight field */
+.hero--photo {
+  overflow: clip;
+  background:
+    radial-gradient(ellipse 52% 64% at 78% 20%, rgba(242,180,106,.19), transparent 68%),
+    radial-gradient(ellipse 62% 80% at 88% 92%, rgba(59,42,92,.62), transparent 72%),
+    radial-gradient(ellipse 40% 40% at 62% 100%, rgba(232,143,160,.10), transparent 74%),
+    var(--lofi-night);
+}
+.hero--photo > .hero__bg { filter: none; }  /* the film moment grades the sky as it arrives; the scrims carry the rest */
+.hero--photo::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(13,9,25,.95) 0%, rgba(13,9,25,.87) 38%, rgba(16,11,30,.55) 62%, rgba(13,9,25,.47) 100%),
+    linear-gradient(180deg, rgba(13,9,25,.54) 0%, rgba(13,9,25,.06) 34%, rgba(13,9,25,.84) 100%),
+    radial-gradient(ellipse 42% 34% at 77% 24%, rgba(242,180,106,.13), transparent 72%);
+}
+.hero--photo::after {
+  content: ""; position: absolute; z-index: 1; pointer-events: none; left: 0; right: 0; bottom: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--scene-line) 18%, var(--scene-line) 82%, transparent);
+}
+.hero--photo > .wrap { position: relative; }
+.hero--photo .hero__text {
+  position: relative; z-index: 2; max-width: 640px;
+  padding: 0; background: none; border: 0; border-radius: 0;
+  text-shadow: 0 1px 26px rgba(0,0,0,.42);
+}
+.hero--photo .hero__text::before {
+  content: ""; display: block; width: 66px; height: 2px; margin-bottom: var(--s-5);
+  background: linear-gradient(90deg, var(--lofi-lamp), rgba(242,180,106,0));
+}
+.hero--photo h1 { max-width: 15ch; }
+.status-badge { color: var(--ink); }
+.hero--photo .hero__lead { color: color-mix(in oklab, var(--p-ink) 86%, var(--p-muted)); }
+/* a quiet signal column: real status, not decoration, and only where there is room for it */
+.hero-rail {
+  display: none; position: absolute; z-index: 2; right: 0; bottom: 2px; width: min(306px, 24vw);
+  padding-left: var(--s-5); border-left: 1px solid var(--scene-line);
+}
+.hero-rail__row { display: grid; grid-template-columns: 7px minmax(0, 1fr); gap: var(--s-3); align-items: start; padding: var(--s-3) 0; border-top: 1px solid rgba(255,255,255,.10); }
+.hero-rail__row:first-child { border-top: 0; padding-top: 0; }
+.hero-rail__dot { width: 7px; height: 7px; margin-top: 3px; border-radius: 50%; background: var(--lofi-lamp); box-shadow: 0 0 14px rgba(242,180,106,.65); }
+.hero-rail__k { display: block; font: 500 10px/1 var(--font-text); letter-spacing: .16em; text-transform: uppercase; color: var(--lofi-sky); }
+.hero-rail__v { display: block; margin-top: 4px; font: 500 13px/1.4 var(--font-text); color: color-mix(in oklab, var(--p-ink) 88%, var(--p-muted)); }
+@media (min-width: 1280px) { .hero-rail { display: grid; } }
+@media (max-width: 1023px) {
+  .hero--photo::before { background: linear-gradient(180deg, rgba(13,9,25,.34) 0%, rgba(13,9,25,.60) 42%, rgba(13,9,25,.93) 100%); }
+  .hero--photo .hero__text { max-width: 100%; }
+}
+@media (max-width: 639px) {
+  .hero--photo > .hero__bg { top: var(--nav); height: calc(100% - var(--nav)); }
+  .hero--photo .hero__text::before { margin-bottom: var(--s-3); }
+}
+
+/* ---------------------------------------------------------------- work history: editorial entries */
+#experience { padding-top: calc(var(--padt) + 20px); }
+#experience .wrap { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: var(--s-5); align-content: start; }
+#experience .exp-intro { grid-column: 1 / span 9; grid-row: 1; display: flex; flex-direction: column; align-self: stretch; min-width: 0; }
+#experience .section-head { margin-bottom: 0; }
+/* the summary sits at the foot of the head column, opposite the portrait, so the row reads whole */
+.exp-summary { margin-top: auto; display: grid; gap: 10px; }
+.exp-summary__k { margin: 0; font: 500 10px/1 var(--font-text); letter-spacing: .16em; text-transform: uppercase; color: var(--lofi-lamp); }
+.exp-summary__k::before { content: ""; display: block; width: 40px; height: 1px; margin-bottom: 9px; background: var(--scene-line); }
+.exp-summary__note { margin: 0; max-width: 58ch; color: var(--ink); font-size: 14px; line-height: 1.5; }
+.exp-summary__strip { display: flex; flex-wrap: wrap; gap: 12px; }
+.exp-summary__strip span { font: 500 10px/1 var(--font-text); letter-spacing: .14em; text-transform: uppercase; color: var(--lofi-sky); }
+.exp-summary__strip span + span::before { content: "\00b7"; margin-right: 12px; color: var(--lofi-rose); }
+.exp-roles { grid-column: 1 / -1; grid-row: 2; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gutter); align-content: start; }
+.exp-portrait {
+  grid-column: 10 / -1; grid-row: 1; align-self: start; justify-self: start; width: 100%; margin: 0; padding: 7px;
+  border: 1px solid var(--line); background: var(--p-surface);
+  box-shadow: 0 22px 54px -26px rgba(0,0,0,.8); position: relative;
+}
+.exp-portrait::before { content: ""; position: absolute; top: -1px; left: 7px; width: 40px; height: 2px; background: var(--lofi-lamp); }
+.exp-portrait img { display: block; width: 100%; height: auto; filter: saturate(.86) contrast(1.02) brightness(.97); }
+.role-card {
+  position: relative; padding: var(--s-5) 0; border: 0; border-radius: 0;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--p-surface) 82%, transparent), transparent 88%);
+  transition: background-color var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.role-card::before { content: ""; position: absolute; left: 0; top: 0; width: 36px; height: 2px; background: var(--lofi-lamp); }
+.role-card__top { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
+.role-card__co { margin: 0; font: 600 clamp(20px, 1.6vw, 25px)/1.15 var(--font-display); letter-spacing: -.01em; }
+.role-card__date { flex: none; font: 500 11px/1 var(--font-text); letter-spacing: .08em; text-transform: uppercase; color: var(--lofi-lamp); }
+.role-card__role { margin: 5px 0 0; font: 500 14px/1.3 var(--font-text); color: var(--lofi-sky); }
+.role-card__bullets { display: grid; gap: 7px; margin: var(--s-3) 0 0; padding: 0; list-style: none; }
+.role-card__bullets li { position: relative; padding-left: 16px; font-size: 14px; line-height: 1.45; color: var(--ink); }
+.role-card__bullets li::before { content: ""; position: absolute; left: 0; top: .66em; width: 7px; height: 1px; background: var(--lofi-sky); }
+.role-card__tools { margin: var(--s-3) 0 0; font: 500 11px/1.5 var(--font-text); letter-spacing: .05em; color: var(--muted); }
+@media (max-width: 1279px) {
+  #experience { padding-top: var(--padt); }
+  #experience .exp-intro { grid-column: 1 / span 9; }
+  .exp-roles { grid-column: 1 / -1; }
+  .exp-portrait { grid-column: 10 / -1; grid-row: 1; }
+}
+@media (max-width: 1023px) {
+  #experience .exp-intro { grid-column: 1 / span 8; }
+  .exp-roles { grid-template-columns: 1fr; }
+}
+@media (max-width: 639px) {
+  #experience { padding-top: calc(var(--padt) + 44px); }
+  #experience .wrap { position: relative; grid-template-columns: minmax(0, 1fr); row-gap: var(--s-4); }
+  #experience .exp-intro { grid-column: 1 / -1; padding-right: 112px; }
+  .exp-summary { display: none; }
+  .exp-roles { grid-column: 1 / -1; grid-row: 2; gap: 10px; }
+  .exp-portrait { position: absolute; top: 0; right: 0; grid-column: auto; grid-row: auto; width: 100px; }
+  .role-card { padding: 14px 0; }
+  .role-card__top { display: block; }
+  .role-card__date { display: block; margin-top: 5px; }
+  .role-card__bullets { gap: 5px; margin-top: 9px; }
+  .role-card__bullets li { font-size: 13px; line-height: 1.4; }
+  .role-card__tools { margin-top: 8px; }
+}
+
+/* ---------------------------------------------------------------- products: a quiet pending chip */
+.repo-chip { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: var(--s-4); padding: 8px 12px;
+  border: 1px solid var(--line-strong); border-radius: var(--r-sm); background: transparent; color: var(--muted);
+  font: 500 13px/1 var(--font-text); letter-spacing: .04em; cursor: not-allowed; }
+.repo-chip::before { content: "</>"; font: 600 12px/1 var(--font-mono); color: var(--lofi-sky); }
+.repo-chip:disabled { opacity: 1; }
+#work .card--open > .panel { margin-top: var(--s-4); }
+
+/* ---------------------------------------------------------------- how I work: a quiet ledger */
+#approach .wrap { justify-content: center; }
+.craft-head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gutter); align-items: end; margin-bottom: var(--s-6); }
+.craft-head .t-label { grid-column: 1 / span 4; color: var(--lofi-lamp); align-self: start; }
+.craft-statement { grid-column: 5 / -1; margin: 0; max-width: 36ch; font: var(--display-weight) clamp(22px, 2.1vw, 34px)/1.28 var(--font-display); letter-spacing: var(--display-tracking); }
+.craft-statement strong { color: var(--lofi-lamp); font-weight: inherit; }
+.craft-list { display: grid; gap: var(--s-3); margin: 0; padding: 0; list-style: none; }
+/* all three steps share one surface: a plum-slate sheet, a hairline and the same warm edge */
+.craft-row {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 104px; gap: var(--s-5); align-items: center;
+  padding: var(--s-5) 0; border: 0; border-radius: 0; background: none;
+  transition: transform var(--dur) var(--ease);
+}
+/* the surface sits just outside the text columns, so every step starts on the container's left line */
+.craft-row::before {
+  content: ""; position: absolute; z-index: 0; inset: 0 calc(var(--s-5) * -1); pointer-events: none;
+  border: 1px solid var(--line); border-left: 2px solid color-mix(in oklab, var(--lofi-lamp) 62%, transparent);
+  border-radius: var(--r-sm);
+  background: linear-gradient(100deg, color-mix(in oklab, var(--p-surface) 82%, transparent), color-mix(in oklab, var(--lofi-violet) 15%, transparent) 64%, transparent);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.craft-row::after {
+  content: ""; position: absolute; z-index: 0; inset: 0 calc(var(--s-5) * -1); border-radius: var(--r-sm); pointer-events: none; opacity: .16;
+  background: linear-gradient(90deg, rgba(185,199,255,.13), rgba(242,180,106,.07) 46%, transparent 86%);
+  transition: opacity var(--dur) var(--ease);
+}
+.craft-row.is-focus::after { opacity: .9; }
+.craft-row.is-focus::before { border-color: var(--scene-line); }
+.craft-row__body, .craft-row__glyph { position: relative; z-index: 1; }
+.craft-row__meta { display: flex; align-items: baseline; gap: 12px; margin: 0 0 6px; }
+.craft-row__num { font: 600 12px/1 var(--font-mono); letter-spacing: .08em; color: var(--lofi-lamp); }
+.craft-row__tag { font: 500 10px/1 var(--font-text); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.craft-row__title { margin: 0 0 6px; font: 600 clamp(19px, 1.5vw, 23px)/1.25 var(--font-display); letter-spacing: -.01em; color: var(--ink); }
+.craft-row__note { margin: 0; max-width: 62ch; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.craft-row__glyph { width: 104px; height: 66px; color: var(--lofi-sky); opacity: .82; }
+@media (max-width: 767px) {
+  .craft-head { grid-template-columns: 1fr; gap: var(--s-3); margin-bottom: var(--s-4); }
+  .craft-head .t-label, .craft-statement { grid-column: 1 / -1; }
+  .craft-statement { font-size: clamp(21px, 6vw, 27px); max-width: none; }
+  .craft-row { grid-template-columns: minmax(0, 1fr); gap: var(--s-3); padding: var(--s-4) 0; }
+  .craft-row::before, .craft-row::after { inset: 0 calc(var(--s-4) * -1); }
+  .craft-row__glyph { display: none; }
+}
+
+/* ---------------------------------------------------------------- about: one editorial page */
+#about {
+  background:
+    radial-gradient(58% 72% at 84% 4%, rgba(185,199,255,.11), transparent 66%),
+    radial-gradient(46% 64% at 100% 100%, rgba(242,180,106,.08), transparent 70%);
+}
+#about .wrap { justify-content: center; }
+#about .section-head { margin-bottom: var(--s-6); }
+#about .section-head h2 { max-width: 18ch; }
+.about-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gutter); align-items: start; }
+.about-copy { grid-column: 1 / span 6; display: grid; gap: var(--s-4); }
+.about-copy p { margin: 0; font-size: clamp(16px, 1.15vw, 18px); line-height: 1.65; color: var(--ink); }
+.about-copy p:first-child { font: 500 clamp(21px, 1.75vw, 27px)/1.42 var(--font-display); letter-spacing: -.01em; }
+.about-copy a { color: var(--lofi-sky); text-decoration-color: color-mix(in oklab, var(--lofi-sky) 48%, transparent); text-underline-offset: 3px; }
+.about-side { grid-column: 7 / -1; position: relative; display: grid; gap: var(--s-4); align-content: start; }
+.about-side::before { content: ""; position: absolute; left: calc(var(--gutter) * -0.5); top: 0; bottom: 0; width: 1px; background: var(--scene-line); }
+.about-mark { position: absolute; top: 2px; right: 0; width: 48px; height: 32px; color: var(--lofi-sky); opacity: .78; }
+.about-side .t-label { color: var(--lofi-lamp); }
+.about-side dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3) var(--s-4); margin: 0; }
+.about-side dl > div { display: grid; gap: 3px; align-content: start; }
+.about-side dt { font: 500 10px/1 var(--font-text); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.about-side dd { margin: 0; color: var(--ink); font-size: 14px; line-height: 1.4; }
+.about-action { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); margin-top: var(--s-6); }
+.about-action p { margin: 0; color: var(--ink); font-size: 15px; }
+@media (max-width: 1023px) {
+  .about-copy, .about-side { grid-column: 1 / -1; max-width: none; }
+  .about-grid { gap: var(--s-5); }
+  .about-side { padding-top: var(--s-4); }
+  .about-side::before { display: none; }
+}
+@media (max-width: 639px) {
+  #about .section-head { margin-bottom: var(--s-4); }
+  #about .section-head h2 { font-size: 28px; }
+  #about .section-head .t-lead { display: none; }
+  .about-copy { gap: var(--s-3); }
+  .about-copy p { font-size: 15px; line-height: 1.58; }
+  .about-copy p:first-child { font-size: 19px; }
+  .about-side { gap: 8px; padding-top: 0; }
+  .about-side .about-mark, .about-side .t-label { display: none; }
+  .about-side dl { gap: var(--s-2) var(--s-3); }
+  .about-side dd { font-size: 13px; }
+  .about-action { display: block; margin-top: var(--s-4); }
+  .about-action p { display: none; }
+  .about-action .btn { width: 100%; justify-content: center; }
+}
+
+/* ---------------------------------------------------------------- footer: a CSS twilight window */
+.footer.closing { height: 100svh; }
+.footer.closing > .wrap { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: minmax(0, 1fr) auto; column-gap: var(--gutter); row-gap: var(--s-6); }
+.footer.closing .footer__legal { grid-column: 1 / -1; margin-top: 0; }
+.closing__links {
+  grid-column: 1 / -1; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: auto 1fr; gap: var(--s-6) var(--gutter); min-height: 0;
+}
+.closing__lead { grid-column: 1 / span 6; grid-row: 1; align-self: start; display: grid; gap: var(--s-4); max-width: 46ch; }
+.closing__lead h2 { margin: 0; font-size: clamp(30px, 3vw, 48px); line-height: 1.08; max-width: 15ch; }
+.closing__lead .footer__lede { margin: 0; font: var(--display-weight) var(--t-h3)/1.3 var(--font-display); letter-spacing: var(--display-tracking); color: var(--ink); max-width: 34ch; }
+.closing__lead .btn { justify-self: start; }
+.closing__col { grid-row: 2; align-self: end; }
+.closing__col--details { grid-column: 1 / span 3; }
+.closing__col--elsewhere { grid-column: 4 / span 3; }
+/* a live desk-signal panel: still by default, a soft frequency drawing when sound is on */
+.ambient {
+  grid-column: 7 / -1; grid-row: 1 / span 2; position: relative; min-height: 0; height: 100%;
+  overflow: hidden; display: grid; grid-template-rows: minmax(0, 1fr) auto;
+  border: 1px solid var(--scene-line); border-radius: var(--r-sm);
+  background: linear-gradient(180deg, #171331 0%, #261b40 62%, #140f2a 100%);
+  box-shadow: 0 22px 60px -40px rgba(0,0,0,.9);
+}
+.ambient__sky {
+  position: relative; min-height: 0; overflow: hidden;
+  background-image:
+    radial-gradient(1px 1px at 18% 22%, rgba(247,242,242,.85), transparent 100%),
+    radial-gradient(1px 1px at 42% 14%, rgba(185,199,255,.7), transparent 100%),
+    radial-gradient(1px 1px at 66% 30%, rgba(247,242,242,.6), transparent 100%),
+    radial-gradient(1px 1px at 88% 18%, rgba(242,180,106,.75), transparent 100%),
+    radial-gradient(1px 1px at 31% 46%, rgba(185,199,255,.55), transparent 100%),
+    repeating-linear-gradient(to bottom, rgba(247,242,242,.028) 0 1px, transparent 1px 5px);
+}
+.ambient__lamp {
+  position: absolute; top: 12%; left: calc(72% + var(--mx, 0px)); width: 190px; height: 190px; border-radius: 50%;
+  transform: translateX(-50%); pointer-events: none;
+  background: radial-gradient(circle, rgba(242,180,106,.42) 0%, rgba(232,143,160,.14) 38%, transparent 70%);
+  filter: blur(5px); transition: left 400ms var(--ease);
+}
+.ambient__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ambient__desk {
+  position: absolute; left: 12%; right: 12%; bottom: 8%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--lofi-lamp), transparent);
+  box-shadow: 0 0 22px rgba(242,180,106,.45);
+}
+.ambient__console {
+  position: relative; z-index: 1; display: grid; gap: 10px; padding: var(--s-4);
+  border-top: 1px solid var(--scene-line); background: linear-gradient(180deg, rgba(13,10,28,.68), rgba(13,10,28,.94));
+}
+.ambient__top { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); }
+.ambient__top .t-label { color: var(--lofi-lamp); }
+.ambient__pip { width: 7px; height: 7px; border-radius: 50%; background: var(--lofi-sky); opacity: .5; transition: opacity var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
+.ambient.is-playing .ambient__pip { opacity: 1; background: var(--lofi-lamp); box-shadow: 0 0 14px rgba(242,180,106,.8); }
+.ambient__readout { margin: 0; font: 500 14px/1.45 var(--font-text); color: var(--ink); }
+.ambient__control { display: flex; align-items: center; gap: var(--s-3); }
+.ambient__play {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 44px; padding: 0 14px;
+  border: 1px solid var(--lofi-lamp); border-radius: var(--r-sm); background: color-mix(in oklab, var(--lofi-lamp) 12%, transparent);
+  color: var(--ink); font: 500 13px/1 var(--font-text); cursor: pointer;
+  transition: transform var(--dur) var(--ease), background-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.ambient__play svg { width: 12px; height: 12px; fill: currentColor; color: var(--lofi-lamp); }
+.ambient__play:hover { transform: translateY(-2px); background: color-mix(in oklab, var(--lofi-lamp) 20%, transparent); box-shadow: 0 0 0 1px rgba(242,180,106,.3), 0 12px 26px -18px rgba(242,180,106,.8); }
+.ambient__play:active { transform: translateY(0); }
+.ambient__volume { display: grid; gap: 2px; flex: 1; min-width: 0; color: var(--muted); font: 500 10px/1 var(--font-text); letter-spacing: .12em; text-transform: uppercase; }
+.ambient__volume input { width: 100%; height: 24px; margin: 0; accent-color: var(--lofi-lamp); cursor: pointer; }
+.ambient__scale { display: flex; justify-content: space-between; color: var(--muted); font: 500 10px/1 var(--font-text); letter-spacing: .12em; text-transform: uppercase; }
+@media (max-width: 1023px) {
+  .closing__lead { grid-column: 1 / -1; }
+  .closing__col--details { grid-column: 1 / span 6; }
+  .closing__col--elsewhere { grid-column: 7 / -1; }
+  .ambient { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient__lamp, .ambient__play { transition: none; }
+  .ambient__play:hover { transform: none; }
+}
+@media (max-width: 639px) {
+  .closing__links { gap: var(--s-5); }
+  .closing__lead h2 { font-size: 30px; }
+  .closing__col { grid-row: auto; }
+  .closing__col--details, .closing__col--elsewhere { grid-column: 1 / -1; }
+  .footer.closing .footer__legal { padding-top: var(--s-3); }
+  .footer.closing .closing__lead .btn { justify-self: stretch; }
+}
+
+/* ---------------------------------------------------------------- hover: clickables step out */
+@media (hover: hover) and (pointer: fine) {
+  .btn { transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background-color var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+  .btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 16px 34px -16px rgba(0,0,0,.9), 0 0 0 1px color-mix(in oklab, var(--lofi-sky) 34%, transparent); }
+  .btn--primary:hover { box-shadow: 0 16px 36px -12px rgba(242,180,106,.42), 0 0 0 1px rgba(242,180,106,.5); }
+  .btn:active { transform: translateY(-1px) scale(.995); box-shadow: 0 6px 16px -10px rgba(0,0,0,.8); }
+  .nav__logo:hover, .quick-trigger:hover { transform: translateY(-2px); }
+  .nav__link:hover { text-shadow: 0 0 16px rgba(185,199,255,.6); }
+  .role-card:hover { transform: translateY(-3px); border-color: var(--scene-line); box-shadow: 0 22px 46px -30px rgba(0,0,0,.9); }
+  .craft-row:hover { transform: translateY(-2px); }
+  .craft-row:hover::before { border-color: var(--scene-line); box-shadow: 0 16px 34px -26px rgba(0,0,0,.85); }
+  .craft-row:hover::after { opacity: .55; }
+  .footer a:hover { text-shadow: 0 0 14px rgba(242,180,106,.55); }
+}
+
+/* ---------------------------------------------------------------- scroll focus and depth */
+html.reveal-ready [data-reveal]:not(.is-revealed) { opacity: .55; transform: translateY(16px); }
+html.reveal-ready [data-reveal] { transition: opacity 620ms var(--ease), transform 620ms var(--ease); }
+html.has-depth .hero__bg { object-position: 78% calc(50% + var(--depth, 0) * 1%); }
+/* a warm light trail: one lantern reticle and seven periwinkle/amber sparks that follow it */
+.cursor-trail { position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: 0; transition: opacity 200ms var(--ease); }
+.cursor-trail.is-on { opacity: 1; }
+.cursor-trail__node { position: absolute; left: 0; top: 0; border-radius: 50%; will-change: transform; }
+.cursor-trail__node--core {
+  width: 18px; height: 18px; margin: -9px 0 0 -9px; border: 1px solid rgba(242,180,106,.82);
+  box-shadow: 0 0 18px rgba(242,180,106,.32), inset 0 0 9px rgba(185,199,255,.18);
+  transition: width 200ms var(--ease), height 200ms var(--ease), margin 200ms var(--ease), border-color 200ms var(--ease);
+}
+.cursor-trail__node--core::after {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 3px; height: 3px; margin: -1.5px 0 0 -1.5px;
+  border-radius: 50%; background: var(--p-ink); box-shadow: 0 0 8px var(--lofi-lamp);
+}
+.cursor-trail__node--spark {
+  width: var(--size); height: var(--size); margin: calc(var(--size) / -2) 0 0 calc(var(--size) / -2);
+  background: radial-gradient(circle, var(--tint), transparent 72%);
+}
+.cursor-trail.is-hot .cursor-trail__node--core {
+  width: 32px; height: 32px; margin: -16px 0 0 -16px; border-color: rgba(185,199,255,.92);
+  box-shadow: 0 0 24px rgba(185,199,255,.42), inset 0 0 12px rgba(242,180,106,.22);
+}
+.cursor-trail.is-hot .cursor-trail__node--spark { filter: brightness(1.45); }
+@media (prefers-reduced-motion: reduce) {
+  html.reveal-ready [data-reveal]:not(.is-revealed) { opacity: 1; transform: none; }
+  html.reveal-ready [data-reveal], html.has-depth .hero__bg { transition: none; transform: none; }
+  html.has-depth .hero__bg { object-position: 78% 50%; }
+  .cursor-trail { display: none; }
+  .role-card, .craft-row, .btn { transform: none !important; }
+}
+@media (hover: none), (pointer: coarse) { .cursor-trail { display: none; } }
+
+/* the lofi block inside quick jump: one divider, no second control family */
+.quick__audio { display: grid; gap: 8px; margin-top: var(--s-3); padding-top: var(--s-4); border-top: 1px solid var(--line); }
+.quick__audio .t-label { color: var(--muted); }
+.quick__audio label { color: var(--muted); font: 500 12px/1 var(--font-text); letter-spacing: .04em; text-transform: uppercase; }
+.quick__audio input[type="range"] { width: 100%; height: 44px; accent-color: var(--accent); cursor: pointer; }
+.quick__audio .mood-panel__note { margin: 0; }
+</style>
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+<link rel="modulepreload" href="assets/moments/moments.js">
+<link rel="modulepreload" href="assets/moments/lib.js">
+<link rel="modulepreload" href="assets/moments/picture-develops/moment.js">
+</head>
+<body>
+
+<header class="nav nav--centre">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Skip to content</a>
+    <a class="nav__logo" href="#top">Neil Nambissan</a>
+    <nav class="nav__links" aria-label="Main">
+      <div class="nav__item"><a class="nav__link" href="#experience">Work history</a></div>
+      <div class="nav__item"><a class="nav__link" href="#work">Products</a></div>
+      <div class="nav__item"><a class="nav__link" href="#skills">Stack</a></div>
+      <div class="nav__item"><a class="nav__link" href="#about">About</a></div>
+    </nav>
+    <div class="nav__actions">
+      <button class="quick-trigger" type="button" id="quick-trigger" aria-expanded="false" aria-controls="quick-palette" aria-label="Quick jump to a section or action">
+        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6.5 2.5a4.5 4.5 0 1 0 4.35 5.65L14 11.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M6.5 5v3l2.2 1.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="quick-trigger__label">Quick jump</span>
+      </button>
+      <a class="btn btn--primary" href="mailto:nrnbissan@gmail.com">Email Neil<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero hero--photo" data-box="none" data-tone="dark" data-enter data-calm="left" data-moment="picture-develops" data-moment-opts='{"look":"film"}' aria-labelledby="hero-h">
+    <img class="hero__bg" src="assets/art/hero-sky.jpg" alt="An anime-style twilight sky above a field of tall grass." style="--ly-pos: 78% 50%; --ly-pos-phone: 70% 50%" width="1920" height="1080" fetchpriority="high">
+    <div class="wrap">
+      <div class="hero-text hero__text">
+        <p class="status-badge">San Jose, CA &middot; May 2026 CS Grad</p>
+        <h1 id="hero-h">Backend and applied AI engineer.</h1>
+        <p class="hero__lead">New grad from UC Merced, May 2026. AI intern at Ciena, full stack intern at Morningstar. Based in San Jose.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="mailto:nrnbissan@gmail.com">Email Neil<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+          <a class="btn btn--secondary" href="#work">See the work</a>
+        </div>
+      </div>
+      <aside class="hero-rail" aria-label="Current status">
+        <div class="hero-rail__row"><span class="hero-rail__dot" aria-hidden="true"></span><div><span class="hero-rail__k">Now</span><span class="hero-rail__v">AI Engineer Intern, Ciena</span></div></div>
+        <div class="hero-rail__row"><span class="hero-rail__dot" aria-hidden="true"></span><div><span class="hero-rail__k">Next</span><span class="hero-rail__v">B.S. Computer Science, 2026</span></div></div>
+        <div class="hero-rail__row"><span class="hero-rail__dot" aria-hidden="true"></span><div><span class="hero-rail__k">Base</span><span class="hero-rail__v">San Jose, California</span></div></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="experience" aria-labelledby="experience-h">
+    <div class="wrap">
+      <div class="exp-intro">
+        <div class="section-head">
+          <h2 id="experience-h">Work history</h2>
+          <p class="t-lead">Two internships, both spent making services easier to read, test and keep running.</p>
+        </div>
+        <div class="exp-summary">
+          <p class="exp-summary__k">The through-line</p>
+          <p class="exp-summary__note">Two roles, one habit: make the data reachable, make the slow path visible, and leave the next engineer a readable handoff.</p>
+          <div class="exp-summary__strip"><span>Services</span><span>Retrieval</span><span>Interfaces</span></div>
+        </div>
+      </div>
+      <figure class="exp-portrait">
+        <img src="assets/art/neil-headshot.jpg" srcset="assets/art/neil-headshot-360.jpg 360w, assets/art/neil-headshot.jpg 640w" sizes="(max-width: 639px) 100px, (max-width: 1023px) 210px, 306px" alt="Neil Nambissan in a navy suit and checked tie against a grey studio background." width="640" height="825" loading="lazy">
+      </figure>
+      <div class="exp-roles">
+        <article class="role-card">
+          <div class="role-card__top">
+            <h3 class="role-card__co">Ciena</h3>
+            <span class="role-card__date">June 2024 &ndash; June 2026</span>
+          </div>
+          <p class="role-card__role">AI Engineer Intern &middot; San Jose</p>
+          <ul class="role-card__bullets">
+            <li>Built a Jira extension that finds duplicate tickets before they reach triage.</li>
+            <li>Connected an older records archive to a retrieval pipeline so search still returns useful answers.</li>
+            <li>Wrote Java and Python services around the search path and kept their responses quick.</li>
+          </ul>
+          <p class="role-card__tools">Java &amp; Python &middot; Retrieval pipeline &middot; Jira extension</p>
+        </article>
+        <article class="role-card">
+          <div class="role-card__top">
+            <h3 class="role-card__co">Morningstar</h3>
+            <span class="role-card__date">January &ndash; May 2026</span>
+          </div>
+          <p class="role-card__role">Full Stack Developer Intern &middot; Merced</p>
+          <ul class="role-card__bullets">
+            <li>Built a Spring Boot and React dashboard for forecasting and cargo planning.</li>
+            <li>Added a SARIMA forecast and a knapsack loader so planners can compare scenarios.</li>
+            <li>Moved UI state to Redux, making each screen easier to trace and extend.</li>
+          </ul>
+          <p class="role-card__tools">Spring Boot &middot; React &amp; Redux &middot; SARIMA</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work" style="--hm: 2" aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="section-head section-head--split">
+        <div>
+          <h2 id="work-h">Three products: one agent pipeline, two platforms</h2>
+          <p class="t-lead">An agent pipeline and two platforms, with the stack each one runs on.</p>
+        </div>
+        <a class="link work-ask" href="mailto:nrnbissan@gmail.com"><span>Ask about the trade-offs</span></a>
+      </div>
+      <div class="grid work-grid">
+        <!-- TODO: add the public repository or demo URL for the agent pipeline when it is available. -->
+        <article class="card card--open work-feature">
+          <h3><span class="kick">Product</span> Autonomous task-resolution agent pipeline</h3>
+          <p>Takes a multi-step request, plans the work, calls a tool for each step, and checks the result before it answers.</p>
+          <!-- TODO: replace this disabled chip with a real <a href="PUBLIC_REPO_URL">GitHub repository</a> link for the agent pipeline once it is public. -->
+          <button class="repo-chip" type="button" disabled aria-label="Repository link pending for agent pipeline">GitHub repository pending</button>
+          <div class="panel">
+            <div class="dg" data-diagram data-diagram-opts='{"size":"band","ground":"none","motion":{"pulse":"none"}}'>
+              <script type="application/json">{"layout":"lanes","alt":"A task goes to the agent, which plans the steps, calls tools and returns one checked answer.","input":{"label":"Task","icon":"ui:inbox","sub":"One request","kindCompact":"pill"},"core":{"label":"Agent","icon":"ui:bot","kindCompact":"core-pill"},"lanes":[{"label":"Plan","icon":"ui:list-checks","sub":"In order","done":true,"kindCompact":"pill"},{"label":"Tools","icon":"ui:wrench","sub":"Each step","done":true,"kindCompact":"pill"},{"label":"Check","icon":"ui:badge-check","sub":"Before return","done":true,"kindCompact":"pill"}]}</script>
+            </div>
+              <p class="dg-note" aria-live="polite" hidden></p>
+          </div>
+        </article>
+        <div class="work-side">
+          <!-- TODO: add the public repository or demo URL for the asset tracking platform when it is available. -->
+          <article class="card card--open">
+            <h3><span class="kick">Product</span> High-frequency asset tracking platform</h3>
+            <p>Ingests high-frequency asset updates over REST and WebSockets with no dropped packets at peak load, and re-renders only the rows that change. Java 11, Spring Boot, React, PostgreSQL and Docker.</p>
+          <!-- TODO: replace this disabled chip with a real <a href="PUBLIC_REPO_URL">GitHub repository</a> link for the asset tracking platform once it is public. -->
+          <button class="repo-chip" type="button" disabled aria-label="Repository link pending for asset tracking platform">GitHub repository pending</button>
+            <div class="panel">
+              <div class="dg" data-diagram data-diagram-opts='{"size":"band","ground":"none","motion":{"pulse":"none"}}'>
+                <script type="application/json">{"layout":"lanes","alt":"An asset feed reaches a Spring service, which writes to PostgreSQL and pushes changed rows over WebSockets to React.","input":{"label":"Asset feed","icon":"ui:inbox","sub":"REST","kindCompact":"pill"},"core":{"label":"Spring","icon":"ui:server","kindCompact":"core-pill"},"lanes":[{"label":"Store","icon":"ui:database","sub":"PostgreSQL","done":true,"kindCompact":"pill"},{"label":"Push","icon":"ui:radio","sub":"WebSocket","done":true,"kindCompact":"pill"},{"label":"Rows","icon":"ui:table","sub":"Only changed","done":true,"kindCompact":"pill"}]}</script>
+              </div>
+              <p class="dg-note" aria-live="polite" hidden></p>
+            </div>
+          </article>
+          <!-- TODO: add the public repository or demo URL for the analytics engine when it is available. -->
+          <article class="card card--open">
+            <h3><span class="kick">Product</span> Multi-tenant analytics engine</h3>
+            <p>A Go and Node.js gateway batches analytics events and halves MongoDB write locks under concurrent load; a Redis cache serves the aggregates. React and Tailwind CSS on the front end.</p>
+          <!-- TODO: replace this disabled chip with a real <a href="PUBLIC_REPO_URL">GitHub repository</a> link for the analytics engine once it is public. -->
+          <button class="repo-chip" type="button" disabled aria-label="Repository link pending for analytics engine">GitHub repository pending</button>
+            <div class="panel">
+              <div class="dg" data-diagram data-diagram-opts='{"size":"band","ground":"none","motion":{"pulse":"none"}}'>
+                <script type="application/json">{"layout":"lanes","alt":"Analytics events reach a Go and Node gateway, which batches them into MongoDB and serves the aggregates from Redis.","input":{"label":"Events","icon":"ui:activity","sub":"Many tenants","kindCompact":"pill"},"core":{"label":"Gateway","icon":"ui:server","kindCompact":"core-pill"},"lanes":[{"label":"Batch","icon":"ui:layers","sub":"MongoDB","done":true,"kindCompact":"pill"},{"label":"Cache","icon":"ui:database","sub":"Redis","done":true,"kindCompact":"pill"},{"label":"Serve","icon":"ui:chart-no-axes-column","sub":"Aggregates","done":true,"kindCompact":"pill"}]}</script>
+              </div>
+              <p class="dg-note" aria-live="polite" hidden></p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section statement" id="approach" aria-labelledby="approach-h">
+    <div class="wrap">
+      <div class="craft-head">
+        <p class="t-label" id="approach-h">How I work</p>
+        <p class="craft-statement">Good backend work is mostly <strong>invisible</strong>. A request goes in, the pieces answer in order, and nothing on the screen moves until the data is right.</p>
+      </div>
+      <ol class="craft-list">
+        <li class="craft-row">
+          <div class="craft-row__body">
+            <p class="craft-row__meta"><span class="craft-row__num" aria-hidden="true">01</span><span class="craft-row__tag">Debug</span></p>
+            <p class="craft-row__title">Read the failure before the guess.</p>
+            <p class="craft-row__note">Start with the trace, the request and the last known good state. The theory comes after the evidence.</p>
+          </div>
+          <svg class="craft-row__glyph" viewBox="0 0 104 66" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M8 33h17M25 33l14-18h17M25 33l14 18h17M56 15h12M56 51h12"/><circle cx="73" cy="15" r="5"/><circle cx="73" cy="51" r="5"/><circle cx="25" cy="33" r="3"/><path d="M8 33h2" stroke-linecap="round"/></svg>
+        </li>
+        <li class="craft-row">
+          <div class="craft-row__body">
+            <p class="craft-row__meta"><span class="craft-row__num" aria-hidden="true">02</span><span class="craft-row__tag">Measure</span></p>
+            <p class="craft-row__title">Instrument the slow path before changing it.</p>
+            <p class="craft-row__note">See where the time and the writes actually go, then make the smallest change the numbers can defend.</p>
+          </div>
+          <svg class="craft-row__glyph" viewBox="0 0 104 66" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M8 54h88M8 54V10"/><path d="M18 44v-8M32 44V26M46 44V17M60 44V31M74 44V22M88 44V12"/><path d="M14 19l18 5 14-8 14 9 16-7 18 4" stroke-dasharray="2 3"/></svg>
+        </li>
+        <li class="craft-row">
+          <div class="craft-row__body">
+            <p class="craft-row__meta"><span class="craft-row__num" aria-hidden="true">03</span><span class="craft-row__tag">Maintain</span></p>
+            <p class="craft-row__title">Leave the system quieter.</p>
+            <p class="craft-row__note">Fewer moving parts, clearer boundaries and a handoff the next engineer can follow without a call.</p>
+          </div>
+          <svg class="craft-row__glyph" viewBox="0 0 104 66" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="9" y="9" width="26" height="14" rx="1"/><rect x="9" y="43" width="26" height="14" rx="1"/><rect x="55" y="26" width="22" height="14" rx="1"/><path d="M35 16h10v17h10M35 50h10V33"/><path d="M77 33h8l6-7M85 33l6 7"/></svg>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="skills" aria-labelledby="skills-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="skills-h">Stack: services, APIs and data stores</h2>
+        <p class="t-lead">The languages and tools behind them.</p>
+      </div>
+      <div class="grid stack-grid" role="group" aria-label="Languages, frameworks and infrastructure">
+        <div class="stack-col">
+          <p class="t-label">Languages and front end</p>
+          <ul class="stack-list">
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/python.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">Python</span><span class="stack-list__meta">Backend and data</span></li>
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/java.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">Java</span><span class="stack-list__meta">Services</span></li>
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/go.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">Go</span><span class="stack-list__meta">APIs</span></li>
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/typescript.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">TypeScript</span><span class="stack-list__meta">Full stack</span></li>
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/javascript.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">JavaScript</span><span class="stack-list__meta">Interfaces</span></li>
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/react.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">React</span><span class="stack-list__meta">Front ends</span></li>
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/nextjs.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">Next.js</span><span class="stack-list__meta">Web apps</span></li>
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/redux.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">Redux</span><span class="stack-list__meta">State</span></li>
+          </ul>
+        </div>
+        <div class="stack-col">
+          <p class="t-label">Backend and data</p>
+          <ul class="stack-list">
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/nodejs.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">Node.js</span><span class="stack-list__meta">Runtime</span></li>
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/spring.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">Spring Boot</span><span class="stack-list__meta">Services</span></li>
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/postgres.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">PostgreSQL</span><span class="stack-list__meta">Relational data</span></li>
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/mongodb.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">MongoDB</span><span class="stack-list__meta">Documents</span></li>
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/redis.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">Redis</span><span class="stack-list__meta">Cache</span></li>
+          </ul>
+        </div>
+        <div class="stack-col">
+          <p class="t-label">Cloud and workflow</p>
+          <ul class="stack-list">
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/aws.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">AWS</span><span class="stack-list__meta">Cloud</span></li>
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/docker.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">Docker</span><span class="stack-list__meta">Containers</span></li>
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/kubernetes.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">Kubernetes</span><span class="stack-list__meta">Orchestration</span></li>
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/github-actions.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">GitHub Actions</span><span class="stack-list__meta">CI/CD</span></li>
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/git.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">Git</span><span class="stack-list__meta">Version control</span></li>
+            <li><span class="ic-tile"><img class="ic" src="assets/icons/jira.svg" alt="" width="20" height="20" loading="lazy"></span><span class="stack-list__name">Jira</span><span class="stack-list__meta">Sprints</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section about" id="about" aria-labelledby="about-h">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="t-label">About</p>
+        <h2 id="about-h">Engineer first, storyteller by habit.</h2>
+        <p class="t-lead">The person behind the services.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-copy">
+          <p>I&rsquo;m Neil, a computer science graduate from UC Merced. I build backend services, full-stack products and applied AI systems, usually where a lot of data has to stay understandable to the people using it.</p>
+          <p>My internships at Ciena and Morningstar taught me to start with the failure, instrument the slow path and leave a system with fewer moving parts than I found. I care about clear boundaries, readable interfaces and the unglamorous work that makes a product dependable.</p>
+        </div>
+        <aside class="about-side">
+          <svg class="about-mark" viewBox="0 0 48 32" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M2 25h44"/><path d="M8 25v-8l7-5 7 5v8"/><path d="M30 25v-5l6-4 6 4v5"/><circle cx="37" cy="8" r="3"/><path d="M6 9h4M8 7v4"/></svg>
+          <p class="t-label">At a glance</p>
+          <dl>
+            <div><dt>Base</dt><dd>San Jose, California</dd></div>
+            <div><dt>Study</dt><dd>B.S. Computer Science, UC Merced, May 2026</dd></div>
+            <div><dt>Focus</dt><dd>Backend services, full-stack products, applied AI</dd></div>
+            <div><dt>Languages</dt><dd>English, Japanese, Brazilian Portuguese</dd></div>
+          </dl>
+        </aside>
+      </div>
+      <div class="about-action">
+        <p>Open to backend, full-stack and applied AI roles.</p>
+        <a class="btn btn--primary" href="mailto:nrnbissan@gmail.com">Email Neil<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer closing" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__links">
+      <div class="closing__lead">
+        <p class="t-label">Contact</p>
+        <h2 id="close-h">Let&rsquo;s build something that holds up.</h2>
+        <p class="footer__lede">Backend, full-stack and applied AI work from San Jose, California. Open to new-grad roles for 2026.</p>
+        <a class="btn btn--primary" href="mailto:nrnbissan@gmail.com">Email Neil<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      </div>
+      <div class="ambient" id="ambient">
+        <div class="ambient__sky" id="ambient-sky">
+          <span class="ambient__lamp" aria-hidden="true"></span>
+          <canvas class="ambient__canvas" id="ambient-canvas" aria-hidden="true"></canvas>
+          <span class="ambient__desk" aria-hidden="true"></span>
+        </div>
+        <div class="ambient__console">
+          <div class="ambient__top"><p class="t-label">Desk signal</p><span class="ambient__pip" aria-hidden="true"></span></div>
+          <p class="ambient__readout" id="ambient-readout" aria-live="polite">Muted. The room is still; play to bring it up.</p>
+          <div class="ambient__control">
+            <button class="ambient__play" type="button" id="ambient-play" aria-pressed="false" aria-label="Play ambient sound">
+              <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1.5 10 6 2 10.5Z"/></svg><span class="ambient__play-label">Play ambient</span>
+            </button>
+            <label class="ambient__volume" for="ambient-volume">Volume<input id="ambient-volume" type="range" min="0" max="100" value="35"></label>
+          </div>
+          <div class="ambient__scale" aria-hidden="true"><span>Rain</span><span>Room tone</span><span>Still</span></div>
+        </div>
+      </div>
+      <div class="closing__col closing__col--details">
+        <h3>Details</h3>
+        <ul><li>San Jose, California</li><li>UC Merced Undergraduate 2026</li><li>R&eacute;sum&eacute; on request</li></ul>
+      </div>
+      <div class="closing__col closing__col--elsewhere">
+        <h3>Elsewhere</h3>
+        <ul><li><a href="https://github.com/neiln11">GitHub</a></li><li><a href="https://www.linkedin.com/in/neilnambissancs">LinkedIn</a></li></ul>
+      </div>
+    </div>
+    <div class="footer__legal">
+      <span>&copy; 2026 Neil Nambissan</span>
+      <details class="credits">
+        <summary>Artwork: supplied illustration and lofi references.</summary>
+        <p>The hero and section artwork are crops of illustrations supplied for this site; no stock photography is used. Tool logos come from the SVG Logos and Simple Icons sets (CC0) through the design kit, and every mark remains its owner's trademark. The site is static, with no cookies or analytics.</p>
+      </details>
+    </div>
+  </div>
+</footer>
+
+<dialog class="quick" id="quick-palette" aria-labelledby="quick-title">
+  <div class="quick__box">
+    <div class="quick__head">
+      <p class="t-label" id="quick-title">Quick jump</p>
+      <button class="quick__close" type="button" id="quick-close" aria-label="Close quick jump">&times;</button>
+    </div>
+    <div class="quick__list">
+      <a href="#experience">Work history<span class="quick__hint">Two roles</span></a>
+      <a href="#work">Products<span class="quick__hint">Project cards</span></a>
+      <a href="#approach">How I work<span class="quick__hint">Statement</span></a>
+      <a href="#skills">Stack<span class="quick__hint">Tools</span></a>
+      <a href="#about">About<span class="quick__hint">Background</span></a>
+      <button type="button" data-copy-email>Copy email address<span class="quick__hint">C</span></button>
+      <button type="button" data-mood-set="rain">Mood: Midnight Rain</button>
+      <button type="button" data-mood-set="twilight">Mood: Neon Twilight</button>
+      <button type="button" data-mood-set="slate">Mood: Studio Slate</button>
+      <div class="quick__audio">
+        <p class="t-label">Lofi &amp; mood</p>
+        <button type="button" id="audio-toggle" aria-pressed="false" aria-label="Play ambient sound">Play ambient<span aria-hidden="true">&#9654;</span></button>
+        <label for="audio-volume">Volume</label>
+        <input id="audio-volume" type="range" min="0" max="100" value="35">
+        <p class="mood-panel__note">Sound is generated in the browser and stays off until played.</p>
+      </div>
+      <button type="button" data-diagram-jump="0">Agent pipeline notes</button>
+      <button type="button" data-diagram-jump="1">Asset platform notes</button>
+      <button type="button" data-diagram-jump="2">Analytics engine notes</button>
+    </div>
+    <p class="quick__foot">Cmd/Ctrl+K or / to open &middot; Esc to close &middot; sound stays off until played</p>
+  </div>
+</dialog>
+
+<script type="module">
+  // mark the section on screen in the nav (the page is a stack of screens)
+  const pairs = [...document.querySelectorAll('.nav__link[href^="#"]')]
+    .map(a => [a, document.querySelector(a.getAttribute('href'))]).filter(([, sec]) => sec);
+  if (pairs.length) {
+    const mark = (el) => pairs.forEach(([a, sec]) => sec === el ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
+    const io = new IntersectionObserver((es) => { const on = es.filter((e) => e.isIntersecting); if (on.length) mark(on[0].target); },
+      { rootMargin: '-35% 0px -60% 0px', threshold: 0 });
+    pairs.forEach(([, sec]) => io.observe(sec));
+  }
+</script>
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
+<script type="module" src="assets/layout/layout.js"></script>
+<script type="module" src="assets/diagrams/mount.js"></script>
+<script type="module" src="assets/interactions.js"></script>
+<script type="module" src="assets/lofi.js"></script>
+<script type="module" src="assets/ambient.js"></script>
+<script type="module" src="assets/moments/moments.js"></script>
+</body>
+</html>
