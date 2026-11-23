@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Neil Nambissan: backend and applied AI engineer</title>
-<meta name="description" content="Neil Ravi Nambissan, a computer science graduate from UC Merced in May 2026, with AI and full-stack internships at Ciena and Morningstar. Based in San Jose.">
+<meta name="description" content="Neil Nambissan is a San Jose based backend, full-stack and applied AI engineer, UC Merced CS graduate, with internships at Ciena and Morningstar.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Neil Nambissan: backend and applied AI engineer">
-<meta property="og:description" content="AI and full-stack internships at Ciena and Morningstar. B.S. Computer Science, UC Merced, May 2026.">
+<meta property="og:description" content="Neil Nambissan: backend, full-stack and applied AI engineer. UC Merced CS graduate with internships at Ciena and Morningstar.">
 <meta property="og:image" content="share.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -546,6 +546,9 @@ body::after {
   .closing__lead h2 { font-size: 30px; }
   .closing__col { grid-row: auto; }
   .closing__col--details, .closing__col--elsewhere { grid-column: 1 / -1; }
+  /* the résumé link lives with plain text details: keep their natural rhythm, not link-list rows */
+  .footer .closing__col--details ul { gap: var(--s-3); }
+  .footer .closing__col--details ul > li:not(:has(> a)) { min-height: 0; }
   .footer.closing .footer__legal { padding-top: var(--s-3); }
   .footer.closing .closing__lead .btn { justify-self: stretch; }
 }
@@ -903,7 +906,7 @@ html.has-depth .hero__bg { object-position: 78% calc(50% + var(--depth, 0) * 1%)
       </div>
       <div class="closing__col closing__col--details">
         <h3>Details</h3>
-        <ul><li>San Jose, California</li><li>UC Merced Undergraduate 2026</li><li>R&eacute;sum&eacute; on request</li></ul>
+        <ul><li>San Jose, California</li><li>UC Merced Undergraduate 2026</li><li><a href="./Neil_Nambissan_Resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="View or download Neil Nambissan's résumé PDF (opens in a new tab)">R&eacute;sum&eacute; PDF <span aria-hidden="true">&#8599;</span></a></li></ul>
       </div>
       <div class="closing__col closing__col--elsewhere">
         <h3>Elsewhere</h3>

@@ -105,8 +105,10 @@ published.
 
 - The main action is **Email Neil** in the nav, the hero, About and the footer. The mailto address
   is in `href` attributes only and is never printed as page copy.
-- GitHub and LinkedIn links are also `href`-only. No phone number and no résumé PDF are published;
-  the footer offers the résumé on request instead.
+- GitHub and LinkedIn links are also `href`-only. There is no phone number. The footer's Details
+  column links to `./Neil_Nambissan_Resume.pdf` with `target="_blank" rel="noopener noreferrer"`;
+  the PDF sits at the repository root so the relative path resolves both locally and on GitHub
+  Pages. Replace that file to update the résumé.
 - Project repository links are pending. There are six `TODO:` comments in `#work` (two for each
   product); replace the paired comment and disabled chip with a real `<a>` when a repository goes
   public. The chips read `GitHub repository pending` and never point at an invented URL.
